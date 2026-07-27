@@ -253,7 +253,14 @@ export default function DrawArea() {
       fetchAuditLogs(); // Refresh the historical audit trail with the new draw
     } catch (err: any) {
       console.error("Facebook comment picker failed:", err);
-      alert(`Facebook picker failed: ${err.message || "Unknown error"}`);
+      
+      // Extract clean message if it's an HTML error or standard tRPC error string
+      let errorMessage = err.message || "Unknown error";
+      if (errorMessage.includes("Unexpected token") || errorMessage.includes("The page")) {
+        errorMessage = "Server returned an HTML error page instead of JSON. Check your backend server console logs for internal server crashes.";
+      }
+      
+      alert(`Facebook picker failed: ${errorMessage}`);
     }
   };
 
