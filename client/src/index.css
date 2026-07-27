@@ -1,0 +1,344 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============================================================
+   the cash king — Exact colour match
+   Pure black bg · KoC Gold accent · Bright white text
+   Matches: kingofcomps.co.uk
+   ============================================================ */
+
+:root {
+  --radius: 0.65rem;
+
+  /* ── Backgrounds ── */
+  --background: #0d0d0d;          /* KoC near-black page bg */
+  --foreground: #f5f5f5;          /* bright white text */
+
+  --card: #1a1a1a;                /* slightly lifted dark surface */
+  --card-foreground: #f5f5f5;
+
+  --popover: #1a1a1a;
+  --popover-foreground: #f5f5f5;
+
+  /* ── KoC Gold — #F5C518 ── */
+  --primary: #F5C518;
+  --primary-foreground: #0d0d0d;
+
+  --secondary: #222222;
+  --secondary-foreground: #e0e0e0;
+
+  --muted: #1f1f1f;
+  --muted-foreground: #888888;
+
+  /* accent = same gold, used everywhere */
+  --accent: #F5C518;
+  --accent-foreground: #0d0d0d;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #2a2a2a;              /* very dark border, barely visible */
+  --input: #1e1e1e;
+  --ring: #F5C518;
+
+  /* Charts — gold family */
+  --chart-1: #F5C518;
+  --chart-2: #d4a017;
+  --chart-3: #b8860b;
+  --chart-4: #9a6f00;
+  --chart-5: #7a5800;
+
+  /* ── Sidebar — matches KoC left nav (pure black) ── */
+  --sidebar: #111111;
+  --sidebar-foreground: #e5e5e5;
+  --sidebar-primary: #F5C518;
+  --sidebar-primary-foreground: #0d0d0d;
+  --sidebar-accent: rgba(245, 197, 24, 0.12);
+  --sidebar-accent-foreground: #F5C518;
+  --sidebar-border: #222222;
+  --sidebar-ring: #F5C518;
+}
+
+/* Force dark — app uses defaultTheme="dark" */
+.dark {
+  --background: #0d0d0d;
+  --foreground: #f5f5f5;
+  --card: #1a1a1a;
+  --card-foreground: #f5f5f5;
+  --popover: #1a1a1a;
+  --popover-foreground: #f5f5f5;
+  --primary: #F5C518;
+  --primary-foreground: #0d0d0d;
+  --secondary: #222222;
+  --secondary-foreground: #e0e0e0;
+  --muted: #1f1f1f;
+  --muted-foreground: #888888;
+  --accent: #F5C518;
+  --accent-foreground: #0d0d0d;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #2a2a2a;
+  --input: #1e1e1e;
+  --ring: #F5C518;
+  --chart-1: #F5C518;
+  --chart-2: #d4a017;
+  --chart-3: #b8860b;
+  --chart-4: #9a6f00;
+  --chart-5: #7a5800;
+  --sidebar: #111111;
+  --sidebar-foreground: #e5e5e5;
+  --sidebar-primary: #F5C518;
+  --sidebar-primary-foreground: #0d0d0d;
+  --sidebar-accent: rgba(245, 197, 24, 0.12);
+  --sidebar-accent-foreground: #F5C518;
+  --sidebar-border: #222222;
+  --sidebar-ring: #F5C518;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: #0d0d0d;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ── KoC Utility Classes ── */
+
+  /* Main gold heading — matches KoC site */
+  .koc-heading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #F5C518;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .koc-subheading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f5f5f5;
+  }
+
+  .koc-button {
+    background: #F5C518;
+    color: #0d0d0d;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: opacity 0.15s;
+    border: none;
+  }
+  .koc-button:hover { opacity: 0.88; }
+
+  /* Card — dark surface, very subtle border */
+  .koc-card {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    border: 1px solid #2a2a2a;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+
+  /* Gold border — used on modals & featured cards */
+  .koc-gold-border {
+    border: 1.5px solid #F5C518 !important;
+  }
+
+  /* Gold glow shadow */
+  .koc-glow {
+    box-shadow: 0 0 20px rgba(245, 197, 24, 0.18);
+  }
+
+  /* Nav bar — exact KoC black top bar */
+  .koc-navbar {
+    background-color: #111111;
+    border-bottom: 1px solid #222222;
+  }
+
+  /* Ticker / marquee strip */
+  .koc-ticker {
+    background: #1a1a1a;
+    border-bottom: 2px solid #F5C518;
+    color: #f5f5f5;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* Winner badge pill */
+  .koc-winner-badge {
+    background: rgba(245, 197, 24, 0.1);
+    border: 1px solid #F5C518;
+    color: #F5C518;
+    border-radius: 9999px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: monospace;
+  }
+
+  /* Stat highlight number */
+  .koc-stat-value {
+    color: #F5C518;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #F5C518; }
+
+/* ── Focus ring gold ── */
+:focus-visible {
+  outline: 2px solid #F5C518;
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   KoC GREEN — secondary accent colour
+   Matches the green used on KoC site for live/active states
+   ============================================================ */
+:root {
+  --koc-green: #22c55e;
+  --koc-green-dark: #16a34a;
+  --koc-green-glow: rgba(34, 197, 94, 0.2);
+}
+
+@layer components {
+  /* Green badge — "LIVE", "VERIFIED" etc */
+  .koc-badge-green {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    border-radius: 9999px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Green glow card */
+  .koc-glow-green {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+  }
+
+  /* Green icon */
+  .koc-icon-green {
+    color: #22c55e;
+  }
+
+  /* Verify button green */
+  .koc-btn-green {
+    background: #22c55e;
+    color: #0d0d0d;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: opacity 0.15s;
+    border: none;
+  }
+  .koc-btn-green:hover { opacity: 0.88; }
+
+  /* Live dot pulse */
+  .koc-live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse-green 1.5s ease-in-out infinite;
+    margin-right: 0.4rem;
+  }
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+}
